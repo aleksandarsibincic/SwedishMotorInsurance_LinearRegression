@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import os
 
 data = pd.read_csv("./dataset/swedish_motor_insurance/SwedishMotorInsurance.csv", header=0)
 
@@ -21,9 +22,8 @@ sns.distplot(data.Claims,bins=50,ax=ax1)
 
 ax2.set_title('Distribution of label Y i.e. Total Payment for Corresponding claims')
 sns.distplot(data.Payment,bins=50,ax=ax2)
+plt.savefig(os.path.expanduser("./output/plots/SwedishMotorInsurance_Distribution_Sibincic.png"))
 plt.show()
-
-
 
 # This displays the scatter plot for Feature and Label and fits an approximate regression line for the same.
 
@@ -31,6 +31,7 @@ fig , (ax1) = plt.subplots(1,1,figsize=(10,4))
 
 ax1.set_title('Scatter plot between feature and Label')
 sns.regplot(data=data,x='Claims',y='Payment',ax=ax1)
+plt.savefig(os.path.expanduser("./output/plots/SwedishMotorInsurance_RegressionLine_Sibincic.png"))
 plt.show()
 
 # Here we will train the Linear Regression model from scikit-learn and check the RMSE for the Training Data itself.
@@ -54,10 +55,10 @@ X_Train, X_Test, Y_Train, Y_Test = train_test_split(X, Y, test_size = 1/5, rando
 from sklearn import metrics
 
 train_array = np.column_stack((X_Train, Y_Train))
-np.savetxt("training_set.csv", train_array, delimiter=",")
+np.savetxt(os.path.expanduser("./output/SwedishMotorInsurance_TrainingSet_Sibincic.csv"), train_array, delimiter=",")
 
 test_array = np.column_stack((X_Test, Y_Test))
-np.savetxt("test_set.csv", test_array, delimiter=",")
+np.savetxt(os.path.expanduser("./output/SwedishMotorInsurance_TestSet_Sibincic.csv"), test_array, delimiter=",")
 
 ### Fitting Simple Linear Regression to the training set
 
@@ -73,6 +74,7 @@ plt.plot(X_Train, regressor.predict(X_Train), color = 'blue')
 plt.title('Total payment for all claims vs no of claims  (Training Set)')
 plt.xlabel('no of claims')
 plt.ylabel('total payment for all claims')
+plt.savefig(os.path.expanduser("./output/plots/SwedishMotorInsurance_TrainingSet_Sibincic.png"))
 plt.show()
 
 # Visualising the Test set results
@@ -82,6 +84,7 @@ plt.plot(X_Train, regressor.predict(X_Train), color = 'blue')
 plt.title('Total payment for all claims vs no of claims  (Test Set)')
 plt.xlabel('no of claims')
 plt.ylabel('total payment for all claims')
+plt.savefig(os.path.expanduser("./output/plots/SwedishMotorInsurance_TestSet_Sibincic.png"))
 plt.show()
 
 # Predicting the Test set result
@@ -91,7 +94,7 @@ Y_Pred = regressor.predict(X_Test)
 #creating set with predictions
 
 predictions_array = np.column_stack((X_Test, Y_Pred))
-np.savetxt("prediction_set.csv", predictions_array, delimiter=",")
+np.savetxt(os.path.expanduser("./output/SwedishMotorInsurance_PredictionSet_Sibincic.csv"), predictions_array, delimiter=",")
 
 from sklearn.metrics import mean_squared_error, r2_score
 
@@ -107,10 +110,10 @@ print('Coefficient of determination: %.2f'
 # Plot outputs
 plt.scatter(X_Test, Y_Test,  color='black')
 plt.plot(X_Test, Y_Pred, color='blue', linewidth=3)
-
-plt.xticks(())
-plt.yticks(())
-
+plt.title('Total payment for all claims vs no of claims  (Prediction)')
+plt.xlabel('no of claims')
+plt.ylabel('total payment for all claims')
+plt.savefig(os.path.expanduser("./output/plots/SwedishMotorInsurance_Prediction_Sibincic.png"))
 plt.show()
 
 #Polynomial regression
@@ -178,7 +181,6 @@ print('RMSE: %.2f'
 print('Coefficient of determination: %.2f'
       % r2_score(Y_Test, Y_Test_Pred))
 
-
-
-
-
+f= open(os.path.expanduser("./output/SwedishMotorInsurance_RMSE_Sibincic.txt"),"w+")
+f.write(str(np.sqrt(mean_squared_error(Y_Test, Y_Test_Pred))))
+f.close()

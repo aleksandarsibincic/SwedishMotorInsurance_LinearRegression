@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<metadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Exercise 1 - Data Stewardship (2020S)</dc:title>
+    <dc:creator>Sibincic Aleksandar</dc:creator>
+    <dc:subject>Predicting total payments in Swedish Motor Insurance</dc:subject>
+    <dc:description>
+        In this experiment we try to predict the sum of payments for the number of claims in Swedish Motor Insurance. Input consists of 2 datasets, namely train and test set. Using linear regression we predict the sum of payments based on claims in test set. At the end we provide a measurement for our prediction
+    </dc:description>
+    <dc:date>13.04.2020</dc:date>
+    <dc:identifier>https://zenodo.org/badge/latestdoi/251582525</dc:identifier>
+    <dc:language>English</dc:language>
+    <dc:rights>Free access</dc:rights>
+</metadata>
