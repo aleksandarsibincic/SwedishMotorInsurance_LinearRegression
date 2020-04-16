@@ -1,4 +1,4 @@
-<h1>Predicting payments in Swedish Motor Insurance
+<h1>Predicting payments in Swedish Motor Insurance</h1>
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3753030.svg)](https://doi.org/10.5281/zenodo.3753030)
 
